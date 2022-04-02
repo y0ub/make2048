@@ -1,10 +1,5 @@
 #include "make_2048.h"
 
-/*
- * fix_me:
- *  generate new number nontheless do not move
- */
-
 make_2048::make_2048::make_2048(unsigned int n) 
 {
   krow_    = n;
