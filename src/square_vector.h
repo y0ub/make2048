@@ -10,7 +10,7 @@
 namespace make_2048
 {
   template<typename T>
-  class uint_vec
+  class row_vec
   {
     private:
       std::vector<T> column_;
@@ -23,23 +23,23 @@ namespace make_2048
 } // make_2048
 
 template<typename T>
-const T& make_2048::uint_vec<T>::operator[](size_t n) const
+const T& make_2048::row_vec<T>::operator[](size_t n) const
 {
   if (0 > n || column_.size() <= n)
-    throw std::out_of_range("class uint_vec::operator[]::out of range");
+    throw std::out_of_range("class row_vec::operator[]::out of range");
   return column_.at(n);
 }
 
 template<typename T>
-T& make_2048::uint_vec<T>::operator[](size_t n)
+T& make_2048::row_vec<T>::operator[](size_t n)
 {
   if (0 > n || column_.size() <= n)
-    throw std::out_of_range("class uint_vec::operator[]::out of range");
+    throw std::out_of_range("class row_vec::operator[]::out of range");
   return column_.at(n);
 }
 
 template<typename T>
-void make_2048::uint_vec<T>::resize(T &n)
+void make_2048::row_vec<T>::resize(T &n)
 {
   column_.resize(n);
 }
@@ -50,14 +50,14 @@ namespace make_2048
   class square_vector
   {
     private:
-      std::vector<uint_vec<T> > vec_;
+      std::vector<row_vec<T> > vec_;
       unsigned int ksize_;
 
     public:
       square_vector(){};
       square_vector(unsigned int);
-      const uint_vec<T>& operator[](size_t n) const;
-      uint_vec<T>& operator[](size_t n);
+      const row_vec<T>& operator[](size_t n) const;
+      row_vec<T>& operator[](size_t n);
       void resize(unsigned int &);
   };
 } // namespace make_2048
@@ -72,7 +72,7 @@ make_2048::square_vector<T>::square_vector(unsigned int n)
 }
 
 template<typename T>
-const make_2048::uint_vec<T>& make_2048::square_vector<T>::operator [](size_t n) const
+const make_2048::row_vec<T>& make_2048::square_vector<T>::operator [](size_t n) const
 {
   if (0 > n || ksize_ <= n)
     throw std::out_of_range("class board_vec::operator[]::out of range");
@@ -80,7 +80,7 @@ const make_2048::uint_vec<T>& make_2048::square_vector<T>::operator [](size_t n)
 }
 
 template<typename T>
-make_2048::uint_vec<T>& make_2048::square_vector<T>::operator [](size_t n)
+make_2048::row_vec<T>& make_2048::square_vector<T>::operator [](size_t n)
 {
   if (0 > n || ksize_ <= n)
     throw std::out_of_range("class board_vec::operator[]::out of range");
